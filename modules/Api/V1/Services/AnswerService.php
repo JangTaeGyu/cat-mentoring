@@ -4,17 +4,34 @@ namespace Modules\Api\V1\Services;
 
 use Modules\Api\V1\Repositories\AnswerRepositoryInterface;
 use Modules\Api\V1\Repositories\Models\Answer;
+use Modules\Api\V1\Repositories\Models\Enums\UserRole;
 use Modules\Api\V1\Repositories\Models\Question;
+use Modules\Api\V1\Repositories\Models\User;
 use Modules\Api\V1\Services\Data\InputAnswerData;
 use Modules\Api\V1\Services\Exceptions\AcceptedAnswerException;
 use Modules\Api\V1\Services\Exceptions\AnswerRegistrationCountLimitException;
 use Modules\Api\V1\Services\Exceptions\AnswerToQuestionException;
+use Modules\Api\V1\Services\Exceptions\NotAdminRole;
+use Modules\Api\V1\Services\Exceptions\NotMentorRole;
 
 readonly class AnswerService
 {
     public function __construct(
         private AnswerRepositoryInterface $answerRepository
     ) {
+    }
+
+    /**
+     * 회원 멘토 체크하기
+     *
+     * @param User $user
+     * @return void
+     */
+    private function checkMentorUser(User $user): void
+    {
+        if ($user->role->value !== UserRole::ADMIN->value) {
+            throw new NotMentorRole();
+        }
     }
 
     /**
@@ -34,6 +51,7 @@ readonly class AnswerService
 
     public function create(InputAnswerData $data): Answer
     {
+        $this->checkMentorUser($data->getUser());
         $this->checkAnswerRegistrationCountLimit($data->getQuestion(), 3);
 
         $createData = array_merge($data->toData(), [
