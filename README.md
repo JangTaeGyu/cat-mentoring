@@ -35,6 +35,11 @@ composer require laravel/socialite
 composer require netresearch/jsonmapper
 ```
 
+## 참고 자료
+
+![Cat Mentoring 소셜 가입 Flow](/resources/images/Cat Mentoring 소셜 가입 Flow.drawio.png)
+
+
 ## API 목록
 
 ```shell
