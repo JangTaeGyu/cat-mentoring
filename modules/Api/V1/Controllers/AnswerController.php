@@ -49,7 +49,7 @@ class AnswerController extends Controller
 
     public function deleteAnswer(Question $question, Answer $answer): Response
     {
-        $this->answerService->delete($question, $answer);
+        $this->answerService->delete($question, $answer, getLoggedIn());
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

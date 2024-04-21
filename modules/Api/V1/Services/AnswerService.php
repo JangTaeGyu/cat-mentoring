@@ -11,8 +11,8 @@ use Modules\Api\V1\Services\Data\InputAnswerData;
 use Modules\Api\V1\Services\Exceptions\AcceptedAnswerException;
 use Modules\Api\V1\Services\Exceptions\AnswerRegistrationCountLimitException;
 use Modules\Api\V1\Services\Exceptions\AnswerToQuestionException;
-use Modules\Api\V1\Services\Exceptions\NotAdminRole;
 use Modules\Api\V1\Services\Exceptions\NotMentorRole;
+use Modules\Api\V1\Services\Exceptions\QuestionAuthorException;
 
 readonly class AnswerService
 {
@@ -91,10 +91,25 @@ readonly class AnswerService
         }
     }
 
-    public function accept(Question $question, Answer $answer): void
+    /**
+     * 질문 작성자 체크하기
+     *
+     * @param Question $question
+     * @param User $user
+     * @return void
+     */
+    private function checkQuestionAuthor(Question $question, User $user): void
+    {
+        if ($question->user_id !== $user->id) {
+            throw new QuestionAuthorException();
+        }
+    }
+
+    public function accept(Question $question, Answer $answer, User $user): void
     {
         $this->checkAnswerToQuestion($question, $answer);
         $this->checkAcceptedAnswer($answer);
+        $this->checkQuestionAuthor($question, $user);
 
         $answer->repository()->accept();
     }

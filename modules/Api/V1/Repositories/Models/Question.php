@@ -15,6 +15,7 @@ use Modules\Api\V1\Repositories\QuestionRepositoryInterface;
  * @property int $id
  * @property string $title
  * @property string $contents
+ * @property int $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property User $user
