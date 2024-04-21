@@ -58,7 +58,7 @@ PUT       api/v1/approve-mentor # 회원 맨토 승인
 
 ```shell
 # 소스 다운 받기
-https://github.com/JangTaeGyu/cat-mentoring.git
+git clone https://github.com/JangTaeGyu/cat-mentoring.git
 
 # 프로젝트 폴더 접근
 cd cat-mentoring
