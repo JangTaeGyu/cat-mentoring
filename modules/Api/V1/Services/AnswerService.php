@@ -12,7 +12,7 @@ use Modules\Api\V1\Services\Exceptions\AcceptedAnswerException;
 use Modules\Api\V1\Services\Exceptions\AnswerRegistrationCountLimitException;
 use Modules\Api\V1\Services\Exceptions\AnswerToQuestionException;
 use Modules\Api\V1\Services\Exceptions\NotMentorRole;
-use Modules\Api\V1\Services\Exceptions\QuestionAuthorException;
+use Modules\Api\V1\Services\Exceptions\NotAuthorException;
 
 readonly class AnswerService
 {
@@ -101,7 +101,21 @@ readonly class AnswerService
     private function checkQuestionAuthor(Question $question, User $user): void
     {
         if ($question->user_id !== $user->id) {
-            throw new QuestionAuthorException();
+            throw new NotAuthorException();
+        }
+    }
+
+    /**
+     * 답변 작성자 체크하기
+     *
+     * @param Answer $answer
+     * @param User $user
+     * @return void
+     */
+    private function checkAnswerAuthor(Answer $answer, User $user): void
+    {
+        if ($answer->user_id !== $user->id) {
+            throw new NotAuthorException();
         }
     }
 
@@ -126,6 +140,7 @@ readonly class AnswerService
     {
         $this->checkAnswerToQuestion($question, $answer);
         $this->checkAcceptedAnswer($answer);
+        $this->checkAnswerAuthor($answer, $user);
 
         $answer->repository()->delete();
     }

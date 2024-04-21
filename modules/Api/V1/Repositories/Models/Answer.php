@@ -13,6 +13,7 @@ use Modules\Api\V1\Repositories\AnswerRepositoryInterface;
  * @property int $id
  * @property string $contents
  * @property int $question_id
+ * @property int $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $accepted_at
  * @property User $user

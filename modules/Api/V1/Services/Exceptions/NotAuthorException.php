@@ -2,7 +2,7 @@
 
 namespace Modules\Api\V1\Services\Exceptions;
 
-class QuestionAuthorException extends \RuntimeException
+class NotAuthorException extends \RuntimeException
 {
 
 }
