@@ -35,14 +35,14 @@ class AnswerController extends Controller
 
     public function acceptAnswer(Question $question, Answer $answer): Response
     {
-        $this->answerService->accept($question, $answer);
+        $this->answerService->accept($question, $answer, getLoggedIn());
 
         return response(null, Response::HTTP_OK);
     }
 
     public function unacceptedAnswer(Question $question, Answer $answer): Response
     {
-        $this->answerService->unaccepted($question, $answer);
+        $this->answerService->unaccepted($question, $answer, getLoggedIn());
 
         return response(null, Response::HTTP_OK);
     }

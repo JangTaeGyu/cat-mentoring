@@ -114,14 +114,15 @@ readonly class AnswerService
         $answer->repository()->accept();
     }
 
-    public function unaccepted(Question $question, Answer $answer): void
+    public function unaccepted(Question $question, Answer $answer, User $user): void
     {
         $this->checkAnswerToQuestion($question, $answer);
+        $this->checkQuestionAuthor($question, $user);
 
         $answer->repository()->unaccepted();
     }
 
-    public function delete(Question $question, Answer $answer): void
+    public function delete(Question $question, Answer $answer, User $user): void
     {
         $this->checkAnswerToQuestion($question, $answer);
         $this->checkAcceptedAnswer($answer);
