@@ -3,6 +3,7 @@
 namespace Modules\Api\V1\Controllers\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Modules\Core\Resources\PaginationTrait;
 
 class QuestionCollection extends ResourceCollection
 {

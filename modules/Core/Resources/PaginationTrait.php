@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Api\V1\Controllers\Resources;
+namespace Modules\Core\Resources;
 
 trait PaginationTrait
 {
