@@ -37,7 +37,7 @@ composer require netresearch/jsonmapper
 
 ## 참고 자료
 
-![Cat Mentoring 소셜 가입 Flow](/resources/images/Cat Mentoring 소셜 가입 Flow.drawio.png)
+![Cat Mentoring 소셜 가입 Flow](/resources/images/Cat_Mentoring_소셜_가입_Flow.drawio.png)
 
 
 ## API 목록
