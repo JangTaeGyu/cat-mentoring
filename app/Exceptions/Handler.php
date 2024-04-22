@@ -8,6 +8,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Modules\Core\Exceptions\Renderers\AuthenticationExceptionRenderer;
+use Modules\Core\Exceptions\Renderers\AuthorizationExceptionRenderer;
 use Modules\Core\Exceptions\Renderers\NotFoundHttpExceptionRenderer;
 use Modules\Core\Exceptions\Renderers\ValidationExceptionRenderer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -37,7 +38,8 @@ class Handler extends ExceptionHandler
         $this->renderable(fn (NotFoundHttpException $e, Request $request) => NotFoundHttpExceptionRenderer::render($request, $e));
         $this->renderable(fn (ValidationException $e, Request $request) => ValidationExceptionRenderer::render($request, $e));
         $this->renderable(fn (AuthenticationException $e, Request $request) => AuthenticationExceptionRenderer::render($request, $e));
+        $this->renderable(fn (AuthorizationException $e, Request $request) => AuthorizationExceptionRenderer::render($request, $e));
 
-        $this->renderable(fn (\Exception $e, Request $request) => dd($e));
+//
     }
 }
