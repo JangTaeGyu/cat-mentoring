@@ -40,6 +40,6 @@ class Handler extends ExceptionHandler
         $this->renderable(fn (AuthenticationException $e, Request $request) => AuthenticationExceptionRenderer::render($request, $e));
         $this->renderable(fn (AuthorizationException $e, Request $request) => AuthorizationExceptionRenderer::render($request, $e));
 
-//
+        $this->renderable(fn (\Exception $e, Request $request) => ExceptionRenderer::render($request, $e));
     }
 }
