@@ -3,18 +3,22 @@
 namespace Modules\Core\Exceptions\Renderers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class ModelNotFoundExceptionRenderer implements Renderable
+class ValidationExceptionRenderer implements Renderable
 {
     public static function render(Request $request, \Exception $e): mixed
     {
-        $httpStatusCode = ResponseAlias::HTTP_NOT_FOUND;
+        $httpStatusCode = ResponseAlias::HTTP_UNPROCESSABLE_ENTITY;
+
+        /** @var ValidationException $_e */
+        $_e = $e;
 
         return response()->json([
             'code' => $httpStatusCode,
             'error' => [
-                'message' => '모델 데이터가 존재하지 않습니다.',
+                'message' => $_e->errors()
             ],
         ], $httpStatusCode);
     }

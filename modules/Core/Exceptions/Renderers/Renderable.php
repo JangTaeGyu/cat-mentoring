@@ -2,7 +2,9 @@
 
 namespace Modules\Core\Exceptions\Renderers;
 
+use Illuminate\Http\Request;
+
 interface Renderable
 {
-    public function render($request, \Exception $e): mixed;
+    public static function render(Request $request, \Exception $e): mixed;
 }
