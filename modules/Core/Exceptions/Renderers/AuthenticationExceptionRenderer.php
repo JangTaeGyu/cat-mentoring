@@ -5,16 +5,16 @@ namespace Modules\Core\Exceptions\Renderers;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class ModelNotFoundExceptionRenderer implements Renderable
+class AuthenticationExceptionRenderer implements Renderable
 {
     public static function render(Request $request, \Exception $e): mixed
     {
-        $httpStatusCode = ResponseAlias::HTTP_NOT_FOUND;
+        $httpStatusCode = ResponseAlias::HTTP_UNAUTHORIZED;
 
         return response()->json([
             'code' => $httpStatusCode,
             'error' => [
-                'message' => '모델 데이터가 존재하지 않습니다.',
+                'message' => '승인이 필요 합니다.'
             ],
         ], $httpStatusCode);
     }
