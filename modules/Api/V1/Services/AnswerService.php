@@ -29,7 +29,7 @@ readonly class AnswerService
      */
     private function checkMentorUser(User $user): void
     {
-        if ($user->role->value !== UserRole::ADMIN->value) {
+        if ($user->role->value !== UserRole::MENTOR->value) {
             throw new NotMentorRole();
         }
     }
