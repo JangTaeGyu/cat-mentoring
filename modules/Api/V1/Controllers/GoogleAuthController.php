@@ -40,7 +40,7 @@ class GoogleAuthController extends Controller
                 'next' => route('signup')
             ]));
         } catch (\Exception $e) {
-            dump($e);
+            return redirect()->route('login');
         }
     }
 }
