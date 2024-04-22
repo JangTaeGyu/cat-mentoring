@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Modules\Core\Exceptions\Renderers\AuthenticationExceptionRenderer;
 use Modules\Core\Exceptions\Renderers\AuthorizationExceptionRenderer;
+use Modules\Core\Exceptions\Renderers\ExceptionRenderer;
 use Modules\Core\Exceptions\Renderers\NotFoundHttpExceptionRenderer;
 use Modules\Core\Exceptions\Renderers\ValidationExceptionRenderer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

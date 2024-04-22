@@ -16,7 +16,7 @@ class QuestionDetailsResource extends JsonResource
         return [
             'id' => $resource->id,
             'title' => $resource->title,
-            'contents' => $resource->getContentsFirst20CharOnly(),
+            'contents' => $resource->contents,
             'created_at' => $resource->created_at instanceof Carbon
                 ? $resource->created_at->format('Y-m-d H:i:s') : null,
             'updated_at' => $resource->updated_at instanceof Carbon
